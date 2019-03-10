@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR /app
+
+# when we modify others files, we dont have to run "npm install", so this line is used to optimse image building cache
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
