@@ -12,3 +12,17 @@ before_install:
 # test the image and return a status => this status will be used as a status of the commit
 script:
   - docker run aallou/docker-react npm run test -- --coverage #-- -- coverage is used to get a status of test, because npm run test doesn't end after running.
+
+# deploy the application on AWS (Elastic beanstalk)
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-927691367963" # where file are stores on S3  
+  bucket_path: "docker-react"
+  on: 
+    branch: master
+  access_key_id: $AWS_BT_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_BT_SECRET_KEY

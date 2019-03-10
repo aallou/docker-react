@@ -22,6 +22,15 @@ Ngix use the 80 port (default).<br>
 Build : docker build .
 Run : docker run -p 8080:80 <image-id>
 
+## Travis-ci and AWS Elastic Beanstalk
+To deploy the application automatically, we use Travis-ci who build the image (dev), test it and deploy the image (based on Dockerfile) to AWS (Elastic Beanstalk).<br>
+
+*Steps:*
+- Create an environment + application on AWS (Elastic Beanstalk)
+- create a user on service IAM on AWS (to get access key ans secret to be used by Travis CI to deploy)
+- Add deploy script on ".travis.yml"
+- Add env variables for Access key and secret key 
+
 # Generated doc
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
