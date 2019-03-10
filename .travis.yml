@@ -1,0 +1,14 @@
+# we need a super user
+sudo: required
+
+# we need docker as a service
+services:
+  - docker
+
+#
+before_install:
+  - docker build -t aallou/docker-react -f Dockerfile.dev .
+
+# test the image and return a status => this status will be used as a status of the commit
+script:
+  - docker run aallou/docker-react npm run test -- --coverage #-- -- coverage is used to get a status of test, because npm run test doesn't end after running.
